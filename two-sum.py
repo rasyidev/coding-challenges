@@ -36,7 +36,7 @@ def two_sum(nums, target):
   result =[]
   for i, num1 in enumerate(nums):
     for j, num2 in enumerate(nums):
-      if num1 + num2 == target:
+      if i != j and num1 + num2 == target:
         result.extend((i, j))
         return result # untuk break semua loop
   
