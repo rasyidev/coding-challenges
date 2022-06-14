@@ -36,12 +36,12 @@ def two_sum(nums, target):
   result =[]
   for i, num1 in enumerate(nums):
     for j, num2 in enumerate(nums):
-      if num1 + num2 == target:
+      if i!= j and num1 + num2 == target:
         result.extend((i, j))
         return result # untuk break semua loop
   
   return result
     
-nums = [2,7,11,15]
-print(two_sum(nums, 9))
+nums = [3,2,4]
+print(two_sum(nums, 6))
 # Output: [0,1]
