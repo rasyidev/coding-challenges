@@ -42,27 +42,25 @@
 def merge_sorted_array(nums1, m, nums2, n):
   p1 = m - 1 # pointer 1 di elemen terakhir nums1 sebelum nol
   p2 = n - 1 # pointer 2 di elemen terakhir nums2
+  last = len(nums1) - 1 # last index of nums1
 
-  # m = 0 => return nums2 | n = 0 => return nums1
-  if m == 0:
-    return nums2
-  if n == 0:
-    return nums1
-
-  for i in range(5, 1, -1): # loop index 5 -> 2 dari nums1
-    print(nums1)
-    print(nums2[p2], "vs", nums1[p1])
-    if nums2[p2] >= nums1[p1]:
-      nums1[i] = nums2[p2]
-      p2 -= 1 # geser pointer ke kiri
-
+  while p1>=0 and p2>=0:
+    if nums1[p1] > nums2[p2]:
+      nums1[last] = nums1[p1]
+      p1 -=1
     else:
-      print(nums2[p2], "vs", nums1[p1])
-      nums1[i] = nums1[p1]
-      p1 -=1  # geser pointer ke kiri
-  return nums1
+      nums1[last] = nums2[p2]
+      p2 -=1
+    last -=1
+
+  # handle kalau length of nums1 = 0
+  while p2 >= 0:
+    nums1[last] = nums2[p2]
+    p2 -= 1
+    last -=1
+
+merge_sorted_array([0], 0, [1], 1)
 
 # Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
-# print(merge_sorted_array([1,2,3,0,0,0], 3, [2,5,6], 3)) pass
-
-print(merge_sorted_array([0], 0, [1], 1))
+# Output: [1,2,2,3,5,6]
+merge_sorted_array([1,2,3,0,0,0], 3, [2,5,6], 3)
