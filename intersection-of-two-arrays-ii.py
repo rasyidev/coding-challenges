@@ -25,26 +25,28 @@
 # What if nums1's size is small compared to nums2's size? Which algorithm is better?
 # What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
 
+# Cool Idea: O(m) + O(n).
+# Pakai hashmap untuk simpan freq angka nums1
+# kurangi freq tsb dengan angka pada nums2
+
 def intersection_of_two_arrays(nums1, nums2):
   result = []
-  if len(nums1) < len(nums2):
-    for num in nums1:
-      if num in nums2:
+  hmap = {}
+  for num in nums1:
+    if num in hmap:
+      hmap[num] += 1
+    else:
+      hmap[num] = 1
+  
+  for num in nums2:
+    if num in hmap:
+      if hmap[num] > 0:
         result.append(num)
-  else:
-    for num in nums2:
-      if num in nums1:
-        result.append(num)
+        hmap[num] -=1
+
   return result
+    
+
 
 # print(intersection_of_two_arrays([1,2,2,1], [2,2])) # passed
 # print(intersection_of_two_arrays([9,4,9,8,4], [4,9,5])) # passed
-
-#False
-# Input:
-# [1,2]
-# [1,1]
-# Output:
-# [1,1]
-# Expected:
-# [1]
