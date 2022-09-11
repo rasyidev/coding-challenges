@@ -18,6 +18,25 @@ func runningSum(nums ...int) []int {
 	return result
 }
 
+/*
+Runtime: 0 ms
+Memory: 2.9 Mb
+*/
+
+func runningSum2(nums ...int) []int {
+	for i, num := range nums {
+		if i != 0 {
+			nums[i] = nums[i-1] + num
+		}
+	}
+	return nums
+}
+
+/*
+Runtime: 2 ms
+Memory: 2.9 Mb
+*/
+
 func TestRunningSum(t *testing.T) {
 	testCase := []struct {
 		request  []int
